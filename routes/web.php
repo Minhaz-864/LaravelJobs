@@ -49,3 +49,15 @@ Route::get('/listings/{listing}',[listingControl::class, 'show']);
 
 //user registration
 Route::get('/register', [userControl::class, 'create']);
+
+//create user
+Route::post('/users', [userControl::class, 'store']);
+
+//login users
+Route::post('/users/authenticate', [userControl::class, 'authenticate']);
+
+//Logout
+Route::post('/logout', [userControl::class, 'logout']);
+
+//login form
+Route::get('/login', [userControl::class, 'login']);

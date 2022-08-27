@@ -43,7 +43,7 @@ class listingControl extends Controller
         //store listing data
         // dd(request()->all());
 
-        $formFileds = $request->validate([
+        $formFields = $request->validate([
             'title'=>'required',
             'company'=>['required', Rule::unique('listings', 'company')],
             'location'=>'required',
@@ -53,10 +53,10 @@ class listingControl extends Controller
             'description'=>'required'
         ]);
         if($request->hasFile('logo')){
-            $formFileds['logo'] = $request->file('logo')->store('logos', 'public');
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
         
-        Listings::create($formFileds);
+        Listings::create($formFields);
         return redirect('/listings/create')->with('message', 'success');
 
     }
@@ -66,7 +66,7 @@ class listingControl extends Controller
     }
 
     public function update(Request $request, Listings $listing){
-        $formFileds = $request->validate([
+        $formFields = $request->validate([
             'title'=>'required',
             'company'=>['required', Rule::unique('listings', 'company')],
             'location'=>'required',
@@ -76,10 +76,10 @@ class listingControl extends Controller
             'description'=>'required'
         ]);
         if($request->hasFile('logo')){
-            $formFileds['logo'] = $request->file('logo')->store('logos', 'public');
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
         
-        $listing->create($formFileds);
+        $listing->create($formFields);
 
         return back()->with('message', 'success');
     }
