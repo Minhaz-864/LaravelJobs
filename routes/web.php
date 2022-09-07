@@ -35,6 +35,9 @@ Route::get('/listings/create',[listingControl::class, 'create']);
 //store data from create form
 Route::post('/listings',[listingControl::class, 'store']);
 
+//Manage Listings
+Route::get('/listings/manage', [listingControl::class, 'manage'])->middleware('auth');
+
 //Show Edit Form
 Route::get('/listings/{listing}/edit', [listingControl::class, 'edit']);
 
@@ -46,6 +49,8 @@ Route::delete('/listings/{listing}/',[listingControl::class, 'delete']);
 
 //single listing
 Route::get('/listings/{listing}',[listingControl::class, 'show']);
+
+
 
 //user registration
 Route::get('/register', [userControl::class, 'create']);

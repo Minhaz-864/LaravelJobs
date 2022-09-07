@@ -42,7 +42,7 @@ class Listings extends Model
     // }
     use HasFactory;
 
-    protected $fillable =['title', 'company', 'location', 'website', 'email', 'description', 'tags', 'logo'];
+    protected $fillable =['title', 'company', 'location', 'website', 'email', 'description', 'tags', 'logo','user_id'];
 
     public function scopeFilter($query, array $filters){
         if($filters['tag'] ?? false){
@@ -55,6 +55,10 @@ class Listings extends Model
             ->orWhere('tags', 'like', '%'.request('search').'');
             //thats just sql query 
         }
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 }

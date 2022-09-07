@@ -21,7 +21,7 @@
                     },
                 },
             },
-        };
+        }
     </script>
     <title>LaraGigs | Find Laravel Jobs & Projects</title>
 </head>
@@ -66,9 +66,9 @@
     <main>
         {{ $slot }}
     </main>
-    @yield('content');
+    @yield('content')
     <footer
-        class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold text-black h-24 mt-24 opacity-90 md:justify-center">
+        class="bottom-0 left-0 w-full flex items-center justify-start font-bold text-black h-24 mt-24 opacity-90 md:justify-center">
         <p class="ml-2">Copyright &copy; 2022, All Rights reserved @ Tamanna</p>
 
 
