@@ -103,4 +103,9 @@ class listingControl extends Controller
     public function manage(){
         return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
     }
+
+    public function apply_manage(){
+        return view('applicant.manage', ['listings' => auth()->user()->listings()->get()]);
+    }
+    
 }

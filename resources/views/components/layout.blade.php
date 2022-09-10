@@ -35,10 +35,17 @@
                     <span class="text-laravel"><i class="fa-solid fa-user"></i> Welcome
                         {{ auth()->user()->name }}</span>
                 </li>
+                @unless(auth()->user()->is_company == 0)
                 <li>
                     <a href="/listings/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i>
                         Manage</a>
                 </li>
+                @else
+                <li>
+                    <a href="/listings/applicant" class="hover:text-laravel"><i class="fa-solid fa-gear"></i>
+                        Manage</a>
+                </li>
+                @endunless
                 <li>
                     <a href="/listings/create" class="inline"><i class="fa-solid fa-plus"></i>Post Job</a>
                 </li>

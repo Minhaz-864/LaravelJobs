@@ -38,6 +38,9 @@ Route::post('/listings',[listingControl::class, 'store']);
 //Manage Listings
 Route::get('/listings/manage', [listingControl::class, 'manage'])->middleware('auth');
 
+//Manage Listings
+Route::get('/listings/applicant', [listingControl::class, 'apply_manage'])->middleware('auth');
+
 //Show Edit Form
 Route::get('/listings/{listing}/edit', [listingControl::class, 'edit']);
 

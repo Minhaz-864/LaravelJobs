@@ -20,12 +20,19 @@ class userControl extends Controller
 
     //store new user information
     public function store(Request $request){
+        //dd($request);
         $formfields = $request->validate([
             'name' => ['required','min:3'],
             'email' => ['required','email', Rule::unique('users', 'email')],
             'password' => ['required', 'confirmed', 'min:8'],
-
+            ''
         ]);
+
+        if($request->company_check){
+            $formfields['is_company'] = true;
+        }else {
+            $formfields['is_company'] = false;
+        }
 
         //hash password
         $formfields['password'] =bcrypt($formfields['password']);

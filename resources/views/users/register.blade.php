@@ -60,6 +60,21 @@
             </div>
 
             <div class="mb-6">
+                <label for="password_confirmation" class="inline-block text-lg mb-2 mr-10">
+                    Register as job provider?(check if Company)
+                </label> 
+                <input type="checkbox" class="border border-gray-200 rounded p-2" name="company_check"
+                    value="1"  
+                    @checked(old('company_check'))
+                    />
+                @error('company_check')
+                    <p class="text-red-500 text-xs mt-1">
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <div class="mb-6">
                 <button type="submit" class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
                     Sign Up
                 </button>
