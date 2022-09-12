@@ -1,5 +1,6 @@
 <x-layout>
     <x-card class="p-10">
+        <x-sidenav>
 <header>
                         <h1
                             class="text-3xl text-center font-bold my-6 uppercase"
@@ -63,6 +64,7 @@
                         </tbody>
                     </table>
 
+</x-sidenav>
 </x-card>
 </x-layout>
 
