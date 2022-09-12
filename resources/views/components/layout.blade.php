@@ -17,7 +17,7 @@
                 extend: {
                     colors: {
                         laravel: "#ef3b2d",
-
+                        green: "#92b25e"
                     },
                 },
             },
@@ -40,15 +40,15 @@
                     <a href="/listings/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i>
                         Manage</a>
                 </li>
+                <li>
+                    <a href="/listings/create" class="inline"><i class="fa-solid fa-plus"></i>Post Job</a>
+                </li>
                 @else
                 <li>
                     <a href="/listings/applicant" class="hover:text-laravel"><i class="fa-solid fa-gear"></i>
                         Manage</a>
                 </li>
                 @endunless
-                <li>
-                    <a href="/listings/create" class="inline"><i class="fa-solid fa-plus"></i>Post Job</a>
-                </li>
                 <li>
                     <form method="POST" class="inline" action="/logout">
                         @csrf

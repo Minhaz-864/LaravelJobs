@@ -33,16 +33,23 @@ we will wrap the whole section with <x-layout> --}}
                             {{ $listing->description }}
                         </p>
 
+                        <div class="flex items-center">
 
-                        <a href="mailto:{{ $listing->email }}"
-                            class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"><i
-                                class="fa-solid fa-envelope"></i>
-                            Contact Employer</a>
-
-                        <a href="https:{{ $listing->website }}" target="_blank"
-                            class="block bg-black text-white py-2 rounded-xl hover:opacity-80"><i
-                                class="fa-solid fa-globe"></i> Visit
-                            Website</a>
+                            <a href="mailto:{{ $listing->email }}"
+                                class="block w-80 bg-laravel text-white mt-6 py-2 px-5 mx-10 ml-20 rounded-xl hover:opacity-80"><i
+                                    class="fa-solid fa-envelope"></i>
+                                Contact Employer</a>
+    
+                            <a href="https:{{ $listing->website }}" target="_blank"
+                                class="block w-80 bg-black text-white mt-6 py-2 px-5 mx-10  rounded-xl hover:opacity-80"><i
+                                    class="fa-solid fa-globe"></i> Visit
+                                Website</a>
+                            @unless(auth()->user()->is_company == 1)
+                            <a href="#" target="_blank"
+                            class="block w-80 bg-green text-white mt-6 py-2  px-5 mx-5 pr-0 rounded-xl hover:opacity-80"><i
+                               class="fa-solid fa-globe"></i>Apply for this job</a>
+                            @endunless
+                        </div>
                     </div>
                 </div>
             </div>
