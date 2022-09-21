@@ -25,7 +25,7 @@ class userControl extends Controller
             'name' => ['required','min:3'],
             'email' => ['required','email', Rule::unique('users', 'email')],
             'password' => ['required', 'confirmed', 'min:8'],
-            ''
+            
         ]);
 
         if($request->company_check){
@@ -72,6 +72,36 @@ class userControl extends Controller
         }
 
         return back()->withErrors(["email"=>"Invalid Email", "password"=>"Invalid Password"]);
+    }
+
+    public function profile(){
+        return view('users.profile', ['profile'=>auth()->user()]);
+    }
+
+    public function changePassword(){
+        return view('users.changepassword');
+    }
+
+    public function updatePassword(Request $request){
+        $url = $request->getPathInfo();
+        $id = explode("/", $url)[2];  
+        $specificUser = User::find($id);
+        
+        $formfields = $request->validate([
+            'email' => ['required','email'],
+            'password' => ['required', 'confirmed', 'min:8'],
+            
+        ]);
+        //hash password
+        $formfields['password'] =bcrypt($formfields['password']);
+        
+        $user = User::where('id', $id)
+            ->update($formfields);
+        // //create the user in model
+        // $user = User::create($formfields);
+        
+
+        return redirect('/company/profileSetup')->with('message', 'Password Updated Successfully');
     }
 
 }

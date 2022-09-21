@@ -45,7 +45,7 @@
                 </li>
                 @else
                 <li>
-                    <a href="/listings/applicant" class="hover:text-laravel"><i class="fa-solid fa-gear"></i>
+                    <a href="/applicant" class="hover:text-laravel"><i class="fa-solid fa-gear"></i>
                         Manage</a>
                 </li>
                 @endunless

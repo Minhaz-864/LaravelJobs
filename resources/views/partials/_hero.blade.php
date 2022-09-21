@@ -9,10 +9,12 @@
         <p class="text-2xl text-gray-200 font-bold my-4">
             Find IT jobs & projects
         </p>
+        @unless(auth())
         <div>
             <a href="/login"
                 class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black">Sign
                 In to Find Desired Job</a>
         </div>
+        @endunless
     </div>
 </section>

@@ -38,8 +38,11 @@ Route::post('/listings',[listingControl::class, 'store']);
 //Manage Listings
 Route::get('/listings/manage', [listingControl::class, 'manage'])->middleware('auth');
 
-//Manage Listings
-Route::get('/listings/applicant', [listingControl::class, 'apply_manage'])->middleware('auth');
+//Manage Listings for applicant
+Route::get('/applicant', [listingControl::class, 'apply_manage'])->middleware('auth');
+
+//Manage-> profile setup for Applicants
+Route::get('/applicant/profileSetup', [listingControl::class, 'applicantSetup'])->middleware('auth');
 
 //Show Edit Form
 Route::get('/listings/{listing}/edit', [listingControl::class, 'edit']);
@@ -67,5 +70,14 @@ Route::post('/users/authenticate', [userControl::class, 'authenticate']);
 //Logout
 Route::post('/logout', [userControl::class, 'logout']);
 
+//change Password
+Route::get('/change_password/{uuid}/', [userControl::class, 'changePassword'])->middleware('auth');
+
+//update password
+Route::put('/change_password/{id}/', [userControl::class, 'updatePassword'])->middleware('auth');
+
 //login form
 Route::get('/login', [userControl::class, 'login']);
+
+//company profile setup
+Route::get('/company/profileSetup', [userControl::class, 'profile'])->middleware('auth');

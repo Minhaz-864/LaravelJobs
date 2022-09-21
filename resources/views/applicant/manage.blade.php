@@ -1,5 +1,5 @@
 <x-layout>
-    <x-card class="p-10">
+    <x-card class="pl-0">
         <x-sidenav>
 <header>
                         <h1
@@ -64,8 +64,8 @@
                         </tbody>
                     </table>
 
-</x-sidenav>
-</x-card>
+                </x-sidenav>
+                </x-card>
 </x-layout>
 
 
