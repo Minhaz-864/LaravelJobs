@@ -64,6 +64,9 @@ Route::get('/register', [userControl::class, 'create']);
 //create user
 Route::post('/users', [userControl::class, 'store']);
 
+//update profile
+Route::post('/users/profile/{user}', [userControl::class, 'update']);
+
 //login users
 Route::post('/users/authenticate', [userControl::class, 'authenticate']);
 

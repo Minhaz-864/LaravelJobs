@@ -82,6 +82,15 @@ class userControl extends Controller
         return view('users.changepassword');
     }
 
+    public function update(Request $request){
+        $url = $request->getPathInfo();
+        $id = explode("/", $url)[3];  
+        // dd($id);
+        $specificUser = User::find($id);
+        dd($specificUser); //start working from here
+        
+    }
+
     public function updatePassword(Request $request){
         $url = $request->getPathInfo();
         $id = explode("/", $url)[2];  
