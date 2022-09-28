@@ -1,104 +1,134 @@
 <x-layout>
-    //this needs to be finished
-    <div class="flex justify-around">
-                <button class="text-red-500"><i class="fa-solid fa-user"></i> <a href="/applicant/profileSetup">Profile</a></button>
-                <button class="text-red-500"><i class="fa-solid fa-trash"></i> <a href="/applicant/applications">Applications</a></button>
-                </div>
+    <div><a href="/applicant" class="text-black ml-4 p-10 m-10">
+        <i class="fa fa-angle-left" aria-hidden="true"></i> Back </a>
+    </div>
     <x-card class="p-10 max-w-lg mx-auto mt-24">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
                 Profile Setup
             </h2>
-            <p class="mb-4">Setup your profile. This will be used as your CV for Companies</p>
+            <p class="mb-4">Setup your profile. This informations will be added to email with your CV</p>
         </header>
-
-        <form method="POST" action="/listings" enctype="multipart/form-data">
+        {{dd($profile)}}
+        <form method="POST" action="/applicant/profileSetup" enctype="multipart/form-data">
             @csrf
             <div class="mb-6">
-                <label for="company" class="inline-block text-lg mb-2">Company Name</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="company"
-                    value="{{ old('company') }}" />
-                @error('company')
+                <label for="name" class="inline-block text-lg mb-2">Name</label>
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="name"
+                    value="{{ $profile->name }}" />
+                @error('name')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             <div class="mb-6">
-                <label for="title" class="inline-block text-lg mb-2">Job Title</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="title"
-                    placeholder="Example: Senior Laravel Developer" value="{{ old('title') }}" />
-                @error('title')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+                <label for="email" class="inline-block text-lg mb-2">Email</label>
+                <input type="email" class="border border-gray-200 rounded p-2 w-full" name="email"
+                    value="{{ $profile->email }}" />
 
-            <div class="mb-6">
-                <label for="location" class="inline-block text-lg mb-2">Job Location</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="location"
-                    placeholder="Example: Remote, Boston MA, etc" value="{{ old('location') }}" />
-                @error('location')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="mb-6">
-                <label for="email" class="inline-block text-lg mb-2">Contact Email</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="email"
-                    value="{{ old('email') }}" />
                 @error('email')
+                    <p class="text-red-500 text-xs mt-1">
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <div class="mb-6">
+                <label for="phone" class="inline-block text-lg mb-2">Phone</label>
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="phone"
+                    value="{{ $profile->phone }}" />
+
+                @error('phone')
+                    <p class="text-red-500 text-xs mt-1">
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <div class="mb-6">
+                <label for="gender" class="inline-block text-lg mb-2">Gender</label>
+                    <select name="gender" class="border border-gray-200 rounded p-2 w-full">
+                        <option value="" {{ $profile->gender == "" ? 'selected' : '' }}>Select</option>
+                        <option value="male" {{ $profile->gender == "male" ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ $profile->gender == "female" ? 'selected' : '' }}>Female</option>
+                        <option value="others" {{ $profile->gender == "others" ? 'selected' : '' }}>Others</option>
+                    </select>
+                @error('gender')
+                    <p class="text-red-500 text-xs mt-1">
+                        {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <div class="mb-6">
+                <label for="dob" class="inline-block text-lg mb-2">Date of Birth</label>
+                <input type="date" class="border border-gray-200 rounded p-2 w-full" name="dob"
+                    value="{{ $profile->dob }}" />
+                @error('dob')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             <div class="mb-6">
-                <label for="website" class="inline-block text-lg mb-2">
-                    Website/Application URL
-                </label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="website"
-                    value="{{ old('website') }}" />
-                @error('website')
+                <label for="latest_degree" class="inline-block text-lg mb-2">Latest Degree</label>
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="latest_degree"
+                    value="{{ $profile->latest_degree }}" />
+                @error('latest_degree')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             <div class="mb-6">
-                <label for="tags" class="inline-block text-lg mb-2">
-                    Tags (Comma Separated)
-                </label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="tags"
-                    placeholder="Example: Laravel, Backend, Postgres, etc" value="{{ old('tags') }}" />
-                @error('tags')
+                <label for="latest_institute" class="inline-block text-lg mb-2">Latest Institute</label>
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="latest_institute"
+                    value="{{ $profile->latest_institute }}" />
+                @error('latest_institute')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             <div class="mb-6">
-                <label for="logo" class="inline-block text-lg mb-2">
-                    Company Logo
-                </label>
-                <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo" />
-                @error('logo')
+                <label for="present_address" class="inline-block text-lg mb-2">Present Address</label>
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="present_address"
+                    value="{{ $profile->present_address }}" />
+                @error('present_address')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             <div class="mb-6">
-                <label for="description" class="inline-block text-lg mb-2">
-                    Job Description
+                <label for="cover_letter" class="inline-block text-lg mb-2">
+                    Cover Letter
                 </label>
-                <textarea class="border border-gray-200 rounded p-2 w-full" name="description" rows="10"
-                    placeholder="Include tasks, requirements, salary, etc" value="{{ old('description') }}"></textarea>
-                @error('description')
+                <textarea class="border border-gray-200 rounded p-2 w-full" name="cover_letter" rows="10"
+                    placeholder="Your cover letter here" value="{{ $profile->cover_letter }}"></textarea>
+                @error('cover_letter')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
+
+            <div class="mb-6">
+                <label for="cv" class="inline-block text-lg mb-2">
+                Curriculum vitae
+                </label>
+                <input type="file" class="border border-gray-200 rounded p-2 w-full" name="cv" />
+                @error('cv')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
 
             <div class="mb-6">
                 <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                    Create Gig
+                    Update Profile
                 </button>
 
-                <a href="/" class="text-black ml-4"> Back </a>
+                
+            </div>
+            <div class="mt-8">
+                <p>
+                    <a href="/change_password/{{auth()->user()->id}}" class="text-laravel">Change Password?</a>
+                </p>
             </div>
         </form>
     </x-card>

@@ -108,7 +108,11 @@ class listingControl extends Controller
         return view('applicant.manage', ['listings' => auth()->user()->listings()->get()]);
     }
     public function applicantSetup(){
-        return view('applicant.setup');
+        // dd(auth()->user()->applications()->get());
+        return view('applicant.setup', ['profile' => auth()->user()->applications()->get()]);
+    }
+    public function applications(){
+        return view('applicant.applications');
     }
     
 }

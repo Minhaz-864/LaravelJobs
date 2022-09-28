@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
-
+use App\Models\Applicant;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Symfony\Component\Console\Input\Input;
@@ -32,6 +32,7 @@ class userControl extends Controller
             $formfields['is_company'] = true;
         }else {
             $formfields['is_company'] = false;
+            
         }
 
         //hash password
@@ -39,6 +40,13 @@ class userControl extends Controller
         
         //create the user in model
         $user = User::create($formfields);
+        
+        if($formfields['is_company'] == false){
+            $data['name'] = $formfields['name'];
+            $data['email'] = $formfields['email'];
+            $data['user_id'] = $user->id;
+            Applicant::create($data);
+        }
 
         //redirect to login page
         auth()->login($user);
@@ -83,13 +91,25 @@ class userControl extends Controller
     }
 
     public function update(Request $request){
-        $url = $request->getPathInfo(); // ['','user' ,'profile' ,'2'][3]
+        $url = $request->getPathInfo();
         $id = explode("/", $url)[3];  
         // explode("/")
         $specificUser = User::find($id);
         if($specificUser){
-            dd($request->all()); //start working from here
-            
+            $formfields = $request->validate([
+                'phone' => 'nullable|string',
+                'establishment'=> 'nullable|string',
+                'address' => 'nullable|string',
+                'website' => 'nullable|string',
+                'tradelicense' => 'nullable|string',
+            ]);
+            // dd($request->all()); //start working from here
+            if($request->hasFile('tradelicensefile')){
+                $path = 'tradeLicenseFile';
+                $formfields['tradelicensefile'] = FileuploadHelpers::fileStore($request->tradelicensefile, $path);
+            }
+            User::where('id', $id)->update($formfields);
+            return redirect('/company/profileSetup')->with('message', 'Profile Updated Successfully');
         }
         return response("User not found, please try loggin in", 404);
     }

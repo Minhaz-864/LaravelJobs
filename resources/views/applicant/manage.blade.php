@@ -1,5 +1,9 @@
 <x-layout>
     <x-card class="pl-0">
+    <div class="flex justify-around">
+                <button class="text-red-500"><i class="fa-solid fa-user"></i> <a href="/applicant/profileSetup">Profile</a></button>
+                <button class="text-red-500"><i class="fa-solid fa-trash"></i> <a href="/applicant/applications">Applications</a></button>
+                </div>
         <header>
             <h1 class="text-3xl text-center font-bold my-6 uppercase">
                 Manage applications

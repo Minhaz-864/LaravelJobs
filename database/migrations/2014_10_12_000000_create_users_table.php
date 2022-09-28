@@ -20,6 +20,13 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('is_company');
+            $table->string('phone')->nullable();
+            $table->string('establishment')->nullable();
+            $table->string('address')->nullable();
+            $table->string('website')->nullable();
+            $table->string('tradelicense')->nullable();
+            $table->string('tradelicensefile')->nullable();
+            $table->string('review')->default('Pending');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ use \App\Models\Listings;
 use App\Http\Controllers\userControl;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\listingControl;
+use App\Http\Controllers\applicantControl;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +44,12 @@ Route::get('/applicant', [listingControl::class, 'apply_manage'])->middleware('a
 
 //Manage-> profile setup for Applicants
 Route::get('/applicant/profileSetup', [listingControl::class, 'applicantSetup'])->middleware('auth');
+
+//Manage->profile setup for applicants post
+Route::post('/applicant/profileSetup', [applicantControl::class, 'applicantSetup'])->middleware('auth');
+
+//Manage -> Applications by a user
+Route::get('/applicant/applications', [listingControl::class, 'applications'])->middleware('auth');
 
 //Show Edit Form
 Route::get('/listings/{listing}/edit', [listingControl::class, 'edit']);

@@ -37,7 +37,7 @@
             <div class="mb-6">
                 <label for="phone" class="inline-block text-lg mb-2">Phone</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="phone"
-                    value="{{ old('phone') }}" />
+                    value="{{ $profile->phone }}" />
 
                 @error('phone')
                     <p class="text-red-500 text-xs mt-1">
@@ -49,7 +49,7 @@
             <div class="mb-6">
                 <label for="establishment" class="inline-block text-lg mb-2">Year of Establishment</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="establishment"
-                    value="{{ old('establishment') }}" />
+                    value="{{ $profile->establishment }}" />
 
                 @error('establishment')
                     <p class="text-red-500 text-xs mt-1">
@@ -61,7 +61,7 @@
             <div class="mb-6">
                 <label for="address" class="inline-block text-lg mb-2">company address</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="address"
-                    value="{{ old('address') }}" />
+                    value="{{ $profile->address }}" />
 
                 @error('address')
                     <p class="text-red-500 text-xs mt-1">
@@ -73,7 +73,7 @@
             <div class="mb-6">
                 <label for="website" class="inline-block text-lg mb-2">Website</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="website"
-                    value="{{ old('website') }}" />
+                    value="{{ $profile->website }}" />
 
                 @error('website')
                     <p class="text-red-500 text-xs mt-1">
@@ -85,7 +85,7 @@
             <div class="mb-6">
                 <label for="tradelicense" class="inline-block text-lg mb-2">Bussiness/Trade License Number</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="tradelicense"
-                    value="{{ old('tradelicense') }}" />
+                    value="{{ $profile->tradelicense }}" />
 
                 @error('tradelicense')
                     <p class="text-red-500 text-xs mt-1">
@@ -97,7 +97,7 @@
             <div class="mb-6">
                 <label for="tradelicensefile" class="inline-block text-lg mb-2">Bussiness/Trade License Certificate</label>
                 <input type="file" class="border border-gray-200 rounded p-2 w-full" name="tradelicensefile"
-                    value="{{ old('tradelicensefile') }}" />
+                    value="{{ $profile->tradelicensefile }}" />
 
                 @error('tradelicensefile')
                     <p class="text-red-500 text-xs mt-1">

@@ -22,6 +22,9 @@ class User extends Authenticatable
         'email',
         'password',
         'is_company',
+        'phone', 'address',
+        'establishment', 'website', 
+        'tradelicense', 'tradelicensefile'
     ];
 
     /**
@@ -45,5 +48,8 @@ class User extends Authenticatable
 
     public function Listings(){
         return $this->hasMany(Listings::class, 'user_id');
+    }
+    public function Applications(){
+        return $this->hasOne(Applicant::class, 'user_id');
     }
 }
