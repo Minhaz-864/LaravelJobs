@@ -83,12 +83,15 @@ class userControl extends Controller
     }
 
     public function update(Request $request){
-        $url = $request->getPathInfo();
+        $url = $request->getPathInfo(); // ['','user' ,'profile' ,'2'][3]
         $id = explode("/", $url)[3];  
-        // dd($id);
+        // explode("/")
         $specificUser = User::find($id);
-        dd($specificUser); //start working from here
-        
+        if($specificUser){
+            dd($request->all()); //start working from here
+            
+        }
+        return response("User not found, please try loggin in", 404);
     }
 
     public function updatePassword(Request $request){
