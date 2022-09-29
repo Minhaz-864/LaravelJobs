@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-
+use App\Helpers\FileuploadHelpers;
 use App\Models\User;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
@@ -106,7 +106,8 @@ class userControl extends Controller
             // dd($request->all()); //start working from here
             if($request->hasFile('tradelicensefile')){
                 $path = 'tradeLicenseFile';
-                $formfields['tradelicensefile'] = FileuploadHelpers::fileStore($request->tradelicensefile, $path);
+                $formfields['tradelicensefile'] = $request->file('tradelicensefile')->store('tradeLicenseFile', 'public');
+                dd($formfields['tradelicensefile']);
             }
             User::where('id', $id)->update($formfields);
             return redirect('/company/profileSetup')->with('message', 'Profile Updated Successfully');
