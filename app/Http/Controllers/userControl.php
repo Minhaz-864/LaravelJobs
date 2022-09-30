@@ -103,16 +103,19 @@ class userControl extends Controller
                 'website' => 'nullable|string',
                 'tradelicense' => 'nullable|string',
             ]);
-            // dd($request->all()); //start working from here
-            if($request->hasFile('tradelicensefile')){
-                $path = 'tradeLicenseFile';
-                $formfields['tradelicensefile'] = $request->file('tradelicensefile')->store('tradeLicenseFile', 'public');
-                dd($formfields['tradelicensefile']);
+            if($request->tradelicensefile){
+                $content = $request->file('tradelicensefile');
+                $fileExtention  = $content->getClientOriginalExtension();
+                $fileName = time()."_".rand(10000, 99999).'.'.$fileExtention;
+                $temp = $request->file('tradelicensefile')->move(
+                    base_path() . '/public/tradeLicenseFile', $fileName
+                );
+                $formfields['tradelicensefile'] = 'tradeLicenseFile/'.$temp->getFilename();
             }
             User::where('id', $id)->update($formfields);
             return redirect('/company/profileSetup')->with('message', 'Profile Updated Successfully');
         }
-        return response("User not found, please try loggin in", 404);
+        return redirect('/company/profileSetup')->with('message', 'User Not found!');
     }
 
     public function updatePassword(Request $request){

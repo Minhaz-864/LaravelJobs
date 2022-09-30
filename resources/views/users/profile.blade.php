@@ -1,13 +1,13 @@
 <x-layout>
 
-<header class="text-center">
+    <header class="text-center">
         <h2 class="text-2xl font-bold uppercase mb-1">
             Profile
         </h2>
         <p class="mb-4">Setup your profile to post jobs</p>
     </header>
     <x-card class="p-10 max-w-lg mx-auto mt-24">
-        <form method="POST" action="/users/profile/{{ $profile['id'] }}">
+        <form method="POST" action="/users/profile/{{ $profile['id'] }}" enctype="multipart/form-data">
             @csrf
             <div class="mb-6">
                 <label for="name" class="inline-block text-lg mb-2">
@@ -45,7 +45,7 @@
                     </p>
                 @enderror
             </div>
-            
+
             <div class="mb-6">
                 <label for="establishment" class="inline-block text-lg mb-2">Year of Establishment</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="establishment"
@@ -95,10 +95,16 @@
             </div>
 
             <div class="mb-6">
-                <label for="tradelicensefile" class="inline-block text-lg mb-2">Bussiness/Trade License Certificate</label>
+                <label for="tradelicensefile" class="inline-block text-lg mb-2">Bussiness/Trade License
+                    Certificate</label>
                 <input type="file" class="border border-gray-200 rounded p-2 w-full" name="tradelicensefile"
                     value="{{ $profile->tradelicensefile }}" />
-
+                <span>
+                    @unless($profile->tradelicensefile)
+                    @else
+                        <i class="fa-solid fa-file-check"></i>
+                    @endunless
+                </span>
                 @error('tradelicensefile')
                     <p class="text-red-500 text-xs mt-1">
                         {{ $message }}
@@ -116,7 +122,7 @@
 
             <div class="mt-8">
                 <p>
-                    <a href="/change_password/{{auth()->user()->id}}" class="text-laravel">Change Password?</a>
+                    <a href="/change_password/{{ auth()->user()->id }}" class="text-laravel">Change Password?</a>
                 </p>
             </div>
         </form>

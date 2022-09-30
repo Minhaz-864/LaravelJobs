@@ -46,7 +46,7 @@ Route::get('/applicant', [listingControl::class, 'apply_manage'])->middleware('a
 Route::get('/applicant/profileSetup', [listingControl::class, 'applicantSetup'])->middleware('auth');
 
 //Manage->profile setup for applicants post
-Route::post('/applicant/profileSetup', [applicantControl::class, 'applicantSetup'])->middleware('auth');
+Route::post('/applicant/profileSetup/{id}', [applicantControl::class, 'applicantSetup'])->middleware('auth');
 
 //Manage -> Applications by a user
 Route::get('/applicant/applications', [listingControl::class, 'applications'])->middleware('auth');

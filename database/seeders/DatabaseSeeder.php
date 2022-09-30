@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Listings;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Applicant;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +22,9 @@ class DatabaseSeeder extends Seeder
             "name"=>"Tamanna",
             "email"=>"tamanna@email.com",
             "is_company"=>true,
+            "password" => bcrypt('147258369')
         ]);
+        
         Listings::factory(10)->create(
             [
                 "user_id"=>$user->id
