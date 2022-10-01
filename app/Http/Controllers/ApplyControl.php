@@ -55,4 +55,10 @@ class ApplyControl extends Controller
 
         return back()->with('message', 'success');
     }
+
+    public function manageApplications(Request $request){
+        $applicationsbyuser = Applications::where('comapny_id', auth()->user()->id)->get();
+        
+        return view('users.manageApplications', ["listings"=>$applicationsbyuser]);
+    }
 }

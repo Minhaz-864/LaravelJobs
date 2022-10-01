@@ -39,4 +39,11 @@ class applicantControl extends Controller
 
         return redirect('/applicant/profileSetup')->with('message', 'Profile Updated Successfully');
     }
+
+    public function viewApplicant(Request $request){
+        $url = $request->getPathInfo();
+        $id = explode('/', $url)[3];
+        return view('applicant.show', ["userInfo"=>Applicant::where('id', $id)->first()]);
+        
+    }
 }

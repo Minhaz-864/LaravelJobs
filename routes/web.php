@@ -98,3 +98,9 @@ Route::post('/apply/{applicant}', [ApplyControl::class, 'store'])->middleware('a
 
 //delete application
 Route::delete('/apply/{application}/', [ApplyControl::class, 'delete'])->middleware('auth');
+
+//manage Applications by users
+Route::get('/company/applications', [ApplyControl::class, 'manageApplications']);
+
+//View applicant Profile
+Route::get('/applicant/view/{applicant}', [applicantControl::class, 'viewApplicant']);
