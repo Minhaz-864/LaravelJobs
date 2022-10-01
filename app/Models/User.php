@@ -46,10 +46,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function Listings(){
+    public function Listings()
+    {
         return $this->hasMany(Listings::class, 'user_id');
     }
-    public function Applications(){
+    public function Applications()
+    {
         return $this->hasOne(Applicant::class, 'user_id');
+    }
+    public function appliedJobs()
+    {
+        return $this->hasMany(Applications::class, 'user_id');
     }
 }

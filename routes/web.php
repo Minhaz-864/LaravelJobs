@@ -49,9 +49,6 @@ Route::get('/applicant/profileSetup', [listingControl::class, 'applicantSetup'])
 //Manage->profile setup for applicants post
 Route::post('/applicant/profileSetup/{id}', [applicantControl::class, 'applicantSetup'])->middleware('auth');
 
-//Manage -> Applications by a user
-Route::get('/applicant/applications', [listingControl::class, 'applications'])->middleware('auth');
-
 //Show Edit Form
 Route::get('/listings/{listing}/edit', [listingControl::class, 'edit']);
 
@@ -95,3 +92,9 @@ Route::get('/company/profileSetup', [userControl::class, 'profile'])->middleware
 
 //Handle apply
 Route::get('/apply/{listing}', [ApplyControl::class, 'index'])->middleware('auth');
+
+//store informations
+Route::post('/apply/{applicant}', [ApplyControl::class, 'store'])->middleware('auth');
+
+//delete application
+Route::delete('/apply/{application}/', [ApplyControl::class, 'delete'])->middleware('auth');

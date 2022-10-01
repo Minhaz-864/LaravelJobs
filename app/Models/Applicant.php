@@ -12,7 +12,8 @@ class Applicant extends Model
     protected $fillable =['name', 'email', 'phone', 'gender', 'latest_degree', 'latest_institute', 'dob',
                           'cover_letter', 'present_address', 'cv' ,'user_id'];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 

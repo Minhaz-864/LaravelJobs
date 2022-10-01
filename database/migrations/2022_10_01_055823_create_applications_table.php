@@ -17,11 +17,14 @@ return new class extends Migration
            
                 $table->id();
                 $table->string('comapny_id'); //company id
+                $table->string('listing_id');
                 $table->string('title');
                 $table->string('tags');
                 $table->string('company');
+                $table->longText('cover_letter');
                 $table->string('website');
                 $table->foreignId('applicant_id')->constrained()->onDelete('cascade'); //who is applying
+                $table->foreignId('user_id')->constrained()->onDelete('cascade');
                 $table->timestamps();
      
         });

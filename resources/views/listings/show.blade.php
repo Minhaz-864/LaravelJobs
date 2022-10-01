@@ -46,7 +46,7 @@ we will wrap the whole section with <x-layout> --}}
                                 Website</a>
                             @auth()
                             @unless(auth()->user()->is_company == 1)
-                            <a href="/apply/{{$listing->id}}" target="_blank"
+                            <a href="/apply/{{$listing->id}}"
                             class="block w-80 bg-green text-white mt-6 py-2  px-5 mx-5 pr-0 rounded-xl hover:opacity-80"><i
                                class="fa-solid fa-globe"></i>Apply for this job</a>
                             @endunless
