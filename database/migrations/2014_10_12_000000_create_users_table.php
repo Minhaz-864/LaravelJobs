@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('website')->nullable();
             $table->string('tradelicense')->nullable();
+            $table->string('logo')->nullable();
             $table->string('tradelicensefile')->nullable();
             $table->string('review')->default('Pending');
             $table->rememberToken();

@@ -102,6 +102,7 @@ class userControl extends Controller
                 'address' => 'nullable|string',
                 'website' => 'nullable|string',
                 'tradelicense' => 'nullable|string',
+                'logo' => 'nullable|image'
             ]);
             if($request->tradelicensefile){
                 $content = $request->file('tradelicensefile');
@@ -111,6 +112,15 @@ class userControl extends Controller
                     base_path() . '/public/tradeLicenseFile', $fileName
                 );
                 $formfields['tradelicensefile'] = 'tradeLicenseFile/'.$temp->getFilename();
+            }
+            if($request->logo){
+                $content = $request->file('logo');
+                $fileExtention  = $content->getClientOriginalExtension();
+                $fileName = time()."_".rand(10000, 99999).'.'.$fileExtention;
+                $temp = $request->file('logo')->move(
+                    base_path() . '/public/logo', $fileName
+                );
+                $formfields['logo'] = 'logo/'.$temp->getFilename();
             }
             User::where('id', $id)->update($formfields);
             return redirect('/company/profileSetup')->with('message', 'Profile Updated Successfully');

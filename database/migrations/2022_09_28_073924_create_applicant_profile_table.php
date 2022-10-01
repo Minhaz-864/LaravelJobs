@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('latest_degree')->nullable()->default("");
             $table->string('latest_institute')->nullable()->default("");
             $table->string('dob')->nullable()->default("");
-            $table->string('cover_letter')->nullable()->default("");
+            $table->longText('cover_letter')->nullable()->default("");
             $table->string('present_address')->nullable()->default("");
             $table->string('cv')->nullable()->default("");
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

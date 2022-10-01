@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Applications;
 class Applicant extends Model
 {
     use HasFactory;
@@ -14,5 +14,10 @@ class Applicant extends Model
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(Applications::class, 'applicant_id');
     }
 }

@@ -36,7 +36,7 @@ class listingControl extends Controller
     
     public function create(Listings $listing){
         //create form show
-        return view('listings.create');
+        return view('listings.create', ['profile'=>auth()->user()]);
     }
 
     public function store(Request $request){

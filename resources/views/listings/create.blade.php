@@ -13,7 +13,7 @@
             <div class="mb-6">
                 <label for="company" class="inline-block text-lg mb-2">Company Name</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="company"
-                    value="{{ old('company') }}" />
+                    value="{{ $profile->name }}" />
                 @error('company')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -40,7 +40,7 @@
             <div class="mb-6">
                 <label for="email" class="inline-block text-lg mb-2">Contact Email</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="email"
-                    value="{{ old('email') }}" />
+                    value="{{ $profile->email }}" />
                 @error('email')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -51,7 +51,7 @@
                     Website/Application URL
                 </label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="website"
-                    value="{{ old('website') }}" />
+                    value="{{ $profile->website }}" />
                 @error('website')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -64,16 +64,6 @@
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="tags"
                     placeholder="Example: Laravel, Backend, Postgres, etc" value="{{ old('tags') }}" />
                 @error('tags')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="mb-6">
-                <label for="logo" class="inline-block text-lg mb-2">
-                    Company Logo
-                </label>
-                <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo" />
-                @error('logo')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>

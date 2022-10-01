@@ -5,6 +5,7 @@ use App\Http\Controllers\userControl;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\listingControl;
 use App\Http\Controllers\applicantControl;
+use App\Http\Controllers\ApplyControl;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -91,3 +92,6 @@ Route::get('/login', [userControl::class, 'login']);
 
 //company profile setup
 Route::get('/company/profileSetup', [userControl::class, 'profile'])->middleware('auth');
+
+//Handle apply
+Route::get('/apply/{listing}', [ApplyControl::class, 'index'])->middleware('auth');

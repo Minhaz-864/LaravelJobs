@@ -101,7 +101,7 @@
                     Cover Letter
                 </label>
                 <textarea class="border border-gray-200 rounded p-2 w-full" name="cover_letter" rows="10"
-                    placeholder="Your cover letter here" value="{{ $profile[0]->cover_letter }}"></textarea>
+                    placeholder="Your cover letter here">{{ $profile[0]->cover_letter }}</textarea>
                 @error('cover_letter')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
