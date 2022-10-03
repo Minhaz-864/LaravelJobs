@@ -119,7 +119,7 @@
                 <span>
                     @unless($profile->logo)
                     @else
-                        <i class="fa-solid fa-file-check"></i>
+                        <img src="{{asset($profile->logo)}}" alt="">
                     @endunless
                 </span>
                 @error('logo')
