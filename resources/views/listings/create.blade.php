@@ -3,9 +3,14 @@
     <x-card class="p-10 max-w-lg mx-auto mt-24">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
-                Create a Gig
+                Create a Job Posting
             </h2>
-            <p class="mb-4">Post a gig to find a developer</p>
+            @unless($profile->review == 'Accepted')
+                <span class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
+                    Finish setting up profile and Wait for us to confirm your information!
+                </span>
+            @endunless
+            <p class="mb-4">Post a circular to find developers</p>
         </header>
 
         <form method="POST" action="/listings" enctype="multipart/form-data">
@@ -78,13 +83,14 @@
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
-
             <div class="mb-6">
+                @unless($profile->review == 'Accepted')
+                @else
                 <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
                     Create Gig
                 </button>
-
-                <a href="/" class="text-black ml-4"> Back </a>
+                @endunless
+                <a href="/" class="text-black ml-4 bg-slate-300 rounded py-2 px-4"> Back </a>
             </div>
         </form>
     </x-card>
