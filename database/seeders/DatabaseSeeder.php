@@ -18,13 +18,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //  \App\Models\User::factory(10)->create();
-        $user = User::factory()->create([
-            "name"=>"Tamanna",
-            "email"=>"tamanna@email.com",
-            "is_company"=>true,
-            "password" => bcrypt('147258369')
-        ]);
-
         $admin = User::factory()->create([
             "id" => 1,
             "name"=>"Admin",
@@ -33,6 +26,13 @@ class DatabaseSeeder extends Seeder
             "password" => bcrypt('Admin'),
             "review" => 'Admin'
         ]);
+        $user = User::factory()->create([
+            "name"=>"Tamanna",
+            "email"=>"tamanna@email.com",
+            "is_company"=>true,
+            "password" => bcrypt('147258369')
+        ]);
+
         
         Listings::factory(10)->create(
             [
@@ -40,9 +40,9 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
     }
 }
