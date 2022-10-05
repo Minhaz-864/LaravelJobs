@@ -4,14 +4,11 @@
                 <button class="text-red-500"><i class="fa-solid fa-user"></i> <a href="/company/profileSetup">Profile</a></button>
                 <button class="text-red-500"><i class="fa-solid fa-trash"></i> <a href="/company/applications">Applications</a></button>
                 </div>
-
                 <header>
                 <h1 class="text-3xl text-center font-bold my-6 uppercase">
                                             Manage Gigs
                 </h1>
                 </header>
-            
-           
                 <table class="w-full content-end table-auto rounded-sm">
                     <tbody>
                         @unless($listings->isEmpty())
@@ -64,6 +61,9 @@
                         <td>
     </tr>
                     @endunless
+                    <div class="mt-6 p-4">
+                        {{ $listings->links() }}
+                    </div>
                     </tbody>
                 </table>
            

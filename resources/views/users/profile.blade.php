@@ -102,7 +102,11 @@
                 <span>
                     @unless($profile->tradelicensefile)
                     @else
-                        <i class="fa-solid fa-file-check"></i>
+                    <div>
+
+                        <a href="{{asset($profile->tradelicensefile)}}" class="text-lime-500"><i class="fa fa-file" aria-hidden="true"></i></a>
+                    </div>
+                    
                     @endunless
                 </span>
                 @error('tradelicensefile')
@@ -119,7 +123,7 @@
                 <span>
                     @unless($profile->logo)
                     @else
-                        <img src="{{asset($profile->logo)}}" alt="">
+                        <img class="w-24" src="{{asset($profile->logo)}}" alt="">
                     @endunless
                 </span>
                 @error('logo')

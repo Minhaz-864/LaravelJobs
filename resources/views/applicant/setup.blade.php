@@ -114,7 +114,9 @@
                 <input type="file" class="border border-gray-200 rounded p-2 w-full" name="cv" />
                 @unless($profile[0]->cv)
                 @else
-                    <i class="fa-regular fa-file-check"></i>
+               
+                <a href="{{asset($profile[0]->cv)}}"><i class="fa fa-file text-lime-500" aria-hidden="true"></i><i></i> CV</a>
+                
                 @endunless
                 @error('cv')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>

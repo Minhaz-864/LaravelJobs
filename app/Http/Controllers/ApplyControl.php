@@ -57,7 +57,7 @@ class ApplyControl extends Controller
     }
 
     public function manageApplications(Request $request){
-        $applicationsbyuser = Applications::where('comapny_id', auth()->user()->id)->get();
+        $applicationsbyuser = Applications::where('comapny_id', auth()->user()->id)->paginate('6');
         
         return view('users.manageApplications', ["listings"=>$applicationsbyuser]);
     }

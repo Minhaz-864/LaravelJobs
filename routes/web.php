@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\listingControl;
 use App\Http\Controllers\applicantControl;
 use App\Http\Controllers\ApplyControl;
+use App\Http\Controllers\AdminControl;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +29,10 @@ use App\Http\Controllers\ApplyControl;
  * update - update listing
  * destroy - destroy listing
  */
+
+/************************** 
+********Listings***********
+****************************/
 //all the listings
 Route::get('/', [listingControl::class, 'index']);
 
@@ -39,15 +44,6 @@ Route::post('/listings',[listingControl::class, 'store']);
 
 //Manage Listings
 Route::get('/listings/manage', [listingControl::class, 'manage'])->middleware('auth');
-
-//Manage Listings for applicant
-Route::get('/applicant', [listingControl::class, 'apply_manage'])->middleware('auth');
-
-//Manage-> profile setup for Applicants
-Route::get('/applicant/profileSetup', [listingControl::class, 'applicantSetup'])->middleware('auth');
-
-//Manage->profile setup for applicants post
-Route::post('/applicant/profileSetup/{id}', [applicantControl::class, 'applicantSetup'])->middleware('auth');
 
 //Show Edit Form
 Route::get('/listings/{listing}/edit', [listingControl::class, 'edit']);
@@ -63,32 +59,24 @@ Route::get('/listings/{listing}',[listingControl::class, 'show']);
 
 
 
-//user registration
-Route::get('/register', [userControl::class, 'create']);
 
-//create user
-Route::post('/users', [userControl::class, 'store']);
+/********************************
+******Applicant Management*******
+*********************************/
 
-//update profile
-Route::post('/users/profile/{user}', [userControl::class, 'update']);
 
-//login users
-Route::post('/users/authenticate', [userControl::class, 'authenticate']);
+//Manage Listings for applicant
+Route::get('/applicant', [listingControl::class, 'apply_manage'])->middleware('auth');
 
-//Logout
-Route::post('/logout', [userControl::class, 'logout']);
+//Manage-> profile setup for Applicants
+Route::get('/applicant/profileSetup', [listingControl::class, 'applicantSetup'])->middleware('auth');
 
-//change Password
-Route::get('/change_password/{uuid}/', [userControl::class, 'changePassword'])->middleware('auth');
+//Manage->profile setup for applicants post
+Route::post('/applicant/profileSetup/{id}', [applicantControl::class, 'applicantSetup'])->middleware('auth');
 
-//update password
-Route::put('/change_password/{id}/', [userControl::class, 'updatePassword'])->middleware('auth');
-
-//login form
-Route::get('/login', [userControl::class, 'login']);
-
-//company profile setup
-Route::get('/company/profileSetup', [userControl::class, 'profile'])->middleware('auth');
+/************************** 
+******Apply Management******
+****************************/
 
 //Handle apply
 Route::get('/apply/{listing}', [ApplyControl::class, 'index'])->middleware('auth');
@@ -99,8 +87,64 @@ Route::post('/apply/{applicant}', [ApplyControl::class, 'store'])->middleware('a
 //delete application
 Route::delete('/apply/{application}/', [ApplyControl::class, 'delete'])->middleware('auth');
 
+
+/************************** 
+******User Management*******
+****************************/
+
+
+//user registration
+Route::get('/register', [userControl::class, 'create']);
+
+//create user
+Route::post('/users', [userControl::class, 'store']);
+
+//login form
+Route::get('/login', [userControl::class, 'login']);
+
+//login users
+Route::post('/users/authenticate', [userControl::class, 'authenticate']);
+
+//update profile
+Route::post('/users/profile/{user}', [userControl::class, 'update']);
+
+//change Password
+Route::get('/change_password/{uuid}/', [userControl::class, 'changePassword'])->middleware('auth');
+
+//update password
+Route::put('/change_password/{id}/', [userControl::class, 'updatePassword'])->middleware('auth');
+
+//Logout
+Route::post('/logout', [userControl::class, 'logout']);
+
+
+/********************************
+******Company Management*********
+*********************************/
+
+//company profile setup
+Route::get('/company/profileSetup', [userControl::class, 'profile'])->middleware('auth');
+
 //manage Applications by users
 Route::get('/company/applications', [ApplyControl::class, 'manageApplications']);
 
 //View applicant Profile
 Route::get('/applicant/view/{applicant}', [applicantControl::class, 'viewApplicant']);
+
+
+
+/*********************************** 
+******Admin: User Management********
+************************************/
+//Rejected Applications
+Route::get('/admin/rejected', [AdminControl::class, 'rejected']);
+
+//Accepted Applications
+Route::get('/admin/accepted', [AdminControl::class, 'accepted']);
+
+//accepting or rejecting company
+Route::get('/admin/{status}/{id}', [AdminControl::class, 'update']);
+
+//user management for admin
+Route::get('/admin', [AdminControl::class,'index']);
+

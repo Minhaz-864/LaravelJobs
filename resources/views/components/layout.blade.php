@@ -28,13 +28,14 @@
 
 <body class="mb-48">
     <nav class="flex justify-between items-center mb-4">
-        <a href="/"><img class="w-24" src="{{asset('SiteLogo/FindIT.png')}}" alt="logo" class="logo" /></a>
+        <a href="/"><img class='w-24' src="{{ url('FIND.png') }}" alt="wecode101"/></a>
         <ul class="flex space-x-6 mr-6 text-lg">
             @auth
                 <li>
                     <span class="text-laravel"><i class="fa-solid fa-user"></i> Welcome
                         {{ auth()->user()->name }}</span>
                 </li>
+                
                 @unless(auth()->user()->is_company == 0)
                 <li>
                     <a href="/listings/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i>
@@ -44,10 +45,18 @@
                     <a href="/listings/create" class="inline"><i class="fa-solid fa-plus"></i>Post Job</a>
                 </li>
                 @else
+                @unless(auth()->user()->review == 'Admin')
                 <li>
                     <a href="/applicant" class="hover:text-laravel"><i class="fa-solid fa-gear"></i>
                         Manage</a>
                 </li>
+                @else
+                <li>
+                    <a href="/admin" class="hover:text-laravel"><i class="fa-solid fa-gear"></i>
+                       User Management</a>
+                </li>
+
+                @endunless
                 @endunless
                 <li>
                     <form method="POST" class="inline" action="/logout">

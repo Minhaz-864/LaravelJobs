@@ -113,9 +113,10 @@
                 <label for="cv" class="inline-block text-lg mb-2">
                     @unless($profile[0]->cv)
                     @else
-                        <a href="#" class="text-laravel"><i
-                                class="fa-solid fa-file-check"></i>{{ explode('/', $profile[0]->cv)[1] }}</a>
-                    @endunless
+               
+                <a href="{{asset($profile[0]->cv)}}"><i class="fa fa-file text-lime-500" aria-hidden="true"></i><i></i> CV</a>
+                
+                @endunless
                 </label>
 
             </div>

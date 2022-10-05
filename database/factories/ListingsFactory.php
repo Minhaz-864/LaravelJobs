@@ -23,6 +23,7 @@ class ListingsFactory extends Factory
             'email' => $this->faker->companyEmail(),
             'location' => $this->faker->city(),
             'website' => $this->faker->url(),
+            'logo' => 'Find.png',
             'description' => $this->faker->paragraph(5)
         ];
     }

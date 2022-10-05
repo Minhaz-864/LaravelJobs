@@ -9,22 +9,9 @@ use Illuminate\Validation\Rule;
 class listingControl extends Controller
 {
     public function index(){
-        //show all listing
-        //we can get request through dependency injection
-        //index(Request $request) then say dd($request)
-        //or we can simply can use request helper methods
-        //like say dd(request())
-        //to view whats being sent with the request with query
-        //to get a value dd(request()->'tagName') / dd(request('tagName'))
 
         return view('listings.index', [
-            // 'listings' => Listings::all(), there is a cooler way to do it.
-            //which ever return will happen will be sorted through latest first
-            // 'listings' => Listings::latest()->filter(request(['tag','search']))->get()
-            //this filter will automatically filter through tag name or search string and gets everything
             'listings' => Listings::latest()->filter(request(['tag','search']))->paginate('6')
-            //this here adds a new thing paginate('numberToPaginate'). this will paginate the site depending
-            //on given number and gets everything similiar to previous line above. or maybe simplePaginate()
         ]);
     }
     public function show(Listings $listing){
@@ -54,10 +41,7 @@ class listingControl extends Controller
         ]);
 
         $formFields['user_id'] = auth()->id();
-
-        if($request->hasFile('logo')){
-            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
-        }
+        $formFields['logo'] = auth()->user()->logo;
         Listings::create($formFields);
         return redirect('/listings/create')->with('message', 'success');
 
@@ -101,11 +85,11 @@ class listingControl extends Controller
     }
     
     public function manage(){
-        return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
+        return view('listings.manage', ['listings' => auth()->user()->listings()->latest()->paginate('6')]);
     }
 
     public function apply_manage(){
-        return view('applicant.manage', ['listings' => auth()->user()->appliedjobs()->get()]);
+        return view('applicant.manage', ['listings' => auth()->user()->appliedjobs()->latest()->paginate('6')]);
     }
     public function applicantSetup(){
         // dd(auth()->user()->applications()->get());

@@ -4,7 +4,7 @@
 
     <div class="flex">
         <img class="hidden w-48 mr-6 md:block"
-            src="{{ $listing->logo ? asset('storage/' . $listing->logo) : asset('images/apple.jpg') }}" alt="" />
+            src="{{ $listing->logo ? asset($listing->logo) : url('FIND.png') }}" alt="" />
 
         <div>
             <h3 class="text-2xl">

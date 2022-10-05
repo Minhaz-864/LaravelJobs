@@ -18,9 +18,10 @@
             <tbody>
                 @unless($listings->isEmpty())
                     @foreach ($listings as $listing)
-                        <div hidden>
-                            {{ $applicant = \App\Models\Applicant::find($listing->applicant_id) }}
-                        </div>
+                        @php
+                            $applicant = \App\Models\Applicant::find($listing->applicant_id)
+                        @endphp
+
                         <tr class="border-gray-300">
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
                                 <a href="/listings/{{ $listing['id'] }}">
@@ -54,6 +55,9 @@
                         <td>
                     </tr>
                 @endunless
+                <div class="mt-6 p-4">
+                    {{ $listings->links() }}
+                </div>
             </tbody>
         </table>
 
