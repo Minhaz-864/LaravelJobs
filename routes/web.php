@@ -87,7 +87,11 @@ Route::post('/apply/{applicant}', [ApplyControl::class, 'store'])->middleware('a
 //delete application
 Route::delete('/apply/{application}/', [ApplyControl::class, 'delete'])->middleware('auth');
 
+//Application Accepted
+Route::post('/application/Accept/{id}', [ApplyControl::class, 'accept'])->middleware('auth');
 
+//Application Rejected
+Route::post('/application/Reject/{id}', [ApplyControl::class, 'reject'])->middleware('auth');
 /************************** 
 ******User Management*******
 ****************************/
@@ -129,7 +133,7 @@ Route::get('/company/profileSetup', [userControl::class, 'profile'])->middleware
 Route::get('/company/applications', [ApplyControl::class, 'manageApplications']);
 
 //View applicant Profile
-Route::get('/applicant/view/{applicant}', [applicantControl::class, 'viewApplicant']);
+Route::post('/applicant/view/{applicant}', [applicantControl::class, 'viewApplicant']);
 
 
 

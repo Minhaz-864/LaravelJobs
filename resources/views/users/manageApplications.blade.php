@@ -9,7 +9,7 @@
 
         <header>
             <h1 class="text-3xl text-center font-bold my-6 uppercase">
-                Manage Gigs
+                Manage Applications
             </h1>
         </header>
 
@@ -19,7 +19,8 @@
                 @unless($listings->isEmpty())
                     @foreach ($listings as $listing)
                         @php
-                            $applicant = \App\Models\Applicant::find($listing->applicant_id)
+                        
+                            $applicant = \App\Models\Applicant::find($listing->applicant_id);
                         @endphp
 
                         <tr class="border-gray-300">
@@ -36,14 +37,19 @@
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
                                 {{ $applicant->latest_degree }}
                             </td>
-                            <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-                                {{ $applicant->cv }}
+                            <td class="px-4 py-8 border-t border-b border-gray-300 text-lg
+                            {{$listing->status == 'Pending'? 'text-yellow-400': 'text-lime-400' }}">
+                                {{ $listing->status }}
                             </td>
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-                                <a href="/applicant/view/{{ $listing->applicant_id }}">
-
-                                    View Application
-                                </a>
+                                
+                                <form action="/applicant/view/{{ $listing->applicant_id }}" method="post">
+                                    @csrf
+                                    <input type="text" hidden name="listing_id" value="{{ $listing->listing_id}}"/>
+                                    <button type="submit">View Application</button>
+                                </form>
+                                    
+                                
                             </td>
 
                         </tr>

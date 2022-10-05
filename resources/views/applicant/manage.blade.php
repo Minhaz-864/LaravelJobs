@@ -16,6 +16,7 @@
                     <th>Job Title</th>
                     <th>Company Name</th>
                     <th>Job Tags</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -38,6 +39,11 @@
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
                                 <x-listTags :tags="$listing->tags" />
                             </td>
+
+                            <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+                               {{ $listing->status}}
+                            </td>
+
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
                             
                                 <form method="POST" action="/apply/{{ $listing->id }}">

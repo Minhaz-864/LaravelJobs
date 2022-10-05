@@ -43,7 +43,6 @@ class applicantControl extends Controller
     public function viewApplicant(Request $request){
         $url = $request->getPathInfo();
         $id = explode('/', $url)[3];
-        return view('applicant.show', ["userInfo"=>Applicant::where('id', $id)->first()]);
-        
+        return view('applicant.show', ["userInfo"=>Applicant::where('id', $id)->first(), 'listing_id'=>$request->listing_id]);
     }
 }

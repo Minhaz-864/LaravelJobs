@@ -8,7 +8,7 @@
         </header>
         <hr>
         <hr>
-        <form>
+        
             <div class="mb-6">
                 <label for="name" class="inline-block text-lg mb-2">Name: </label>
                 <label for="name" class="inline-block text-lg mb-2"><strong>{{ $userInfo->name }}</strong></label>
@@ -70,6 +70,23 @@
                 </label>
 
             </div>
-        </form>
+           
+            <div class="flex justify-around">
+                <button type="submit" class="bg-slate-400 px-4 rounded"><a href="/company/applications">Back</a></button>
+                
+                <form action="/application/Accept/{{$userInfo->id}}" method="POST">
+                    @csrf
+                    <input type="text" hidden name="listing_id" value= {{$listing_id}}>
+                    <button class="bg-lime-400 px-4 rounded" type="submit">Accept</button>
+                </form>
+
+                <form action="/application/Reject/{{ $userInfo->id}}" method="POST">
+                    @csrf
+                    <input type="text" hidden name="listing_id" value= {{$listing_id}}>
+                    <button class="bg-red-400 px-4 rounded" type="submit">Reject</button>
+                </form>
+                
+            </div>
+        
     </x-card>
 </x-layout>
